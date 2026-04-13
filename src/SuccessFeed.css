@@ -1,0 +1,171 @@
+/* SuccessFeed.css - Premium Vertical Live Feed */
+
+.success-feed-scene {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+/* 🪪 TESTIMONIAL FEED (Live Feed) */
+.feed-container {
+  width: 100%;
+  max-width: 500px; /* Bigger container */
+  height: 600px;
+  position: relative;
+}
+
+.scroll-mask {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  /* Fade-in/out edges */
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+}
+
+.feed-track {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: scrollUp 12s linear infinite;
+  padding-bottom: 20px;
+}
+
+.feed-track:hover {
+  animation-play-state: paused; /* Pause on hover */
+}
+
+@keyframes scrollUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50.5%); } 
+}
+
+/* 🎴 CARD DESIGN */
+.success-card {
+  width: 100%;
+  max-width: 450px; /* Much Bigger! */
+  background: #2f2f2f;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  padding: 20px 24px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.success-card:hover {
+  transform: scale(1.1) !important;
+  z-index: 20;
+  border-color: rgba(255,255,255,0.2);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.user-avatar {
+  width: 50px; /* Bigger avatar */
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--nova-gold);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px; /* Bigger name */
+}
+
+.user-badge {
+  color: var(--nova-gold);
+  font-size: 13px;
+}
+
+.user-quote {
+  font-size: 16px; /* Bigger quote */
+  color: rgba(255,255,255,0.8);
+  margin: 0;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* FEATURE: Spotlight Highlight */
+.success-card.spotlight {
+  transform: scale(1.08) translateX(-10px);
+  box-shadow: 0 0 20px rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.3);
+}
+
+/* 🔹 Remove old decorations */
+.particles-system, .particle, .light-beam { display: none; }
+
+/* 📱 RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+  .success-feed-scene {
+    width: 100%;
+    transform: scale(0.9);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .success-feed-scene {
+    flex-direction: column;
+    height: auto;
+    padding: 20px 0;
+    transform: none;
+  }
+
+  .laptop-3d-wrap {
+    flex: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
+  .laptop-3d-model {
+    width: 320px;
+    height: 200px;
+  }
+
+  .feed-container {
+    width: 100%;
+    height: auto;
+  }
+
+  .scroll-mask {
+    height: auto;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .feed-track {
+    animation: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0 5%;
+    width: 100%;
+  }
+
+  .success-card {
+    width: 100%;
+    transform: none !important;
+    margin-bottom: 20px;
+  }
+}

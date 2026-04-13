@@ -1,0 +1,388 @@
+/* ContactSection.css */
+
+.contact-section {
+  position: relative;
+  padding: 80px 24px;
+  background: rgba(26, 44, 62, 0.9);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  font-family: inherit;
+  color: #FFFFFF;
+}
+
+/* Faint Gold Dots Pattern */
+.cs-dots-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#FFB347 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cs-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+/* Top / Bottom Separators */
+.cs-top-separator-container,
+.cs-bottom-separator-container {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: flex;
+}
+
+.cs-top-separator-container {
+  top: 0;
+  justify-content: flex-start;
+}
+
+.cs-bottom-separator-container {
+  bottom: 0;
+  justify-content: flex-end;
+}
+
+.cs-top-separator-line,
+.cs-bottom-separator-line {
+  height: 2px;
+  background-color: #FFB347;
+  width: 0%;
+  transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.is-visible .cs-top-separator-line,
+.is-visible .cs-bottom-separator-line {
+  width: 100%;
+}
+
+/* Headline Area */
+.cs-headline-area {
+  text-align: center;
+  margin-bottom: 48px;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.is-visible .cs-headline-area {
+  animation: csFadeUp 0.8s forwards 0.3s;
+}
+
+@keyframes csFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cs-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #FFB347;
+  text-transform: uppercase;
+  border: 1px solid #FFB347;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  letter-spacing: 0.1em;
+  background: transparent;
+}
+
+.cs-subheadline {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 12px 0;
+}
+
+.cs-descriptive-line {
+  font-size: 1rem;
+  color: #F5E6D3;
+  margin: 0 auto;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+/* Split Layout */
+.cs-split-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+
+/* Left Column */
+.cs-left-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.is-visible .cs-left-column {
+  animation: csSlideRight 0.8s forwards 0.6s;
+}
+
+@keyframes csSlideRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.cs-manager-info {
+  margin-bottom: 24px;
+}
+
+.cs-manager-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #FFB347;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.cs-manager-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.cs-contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.cs-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cs-icon {
+  font-size: 1.2rem;
+  color: #FFB347;
+}
+
+.cs-contact-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  color: #FFFFFF;
+}
+
+.cs-contact-sub {
+  font-size: 0.85rem;
+  color: #A3B5C3;
+}
+
+.cs-gold-sub {
+  color: #FFB347;
+}
+
+.cs-social-area {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cs-social-label {
+  font-size: 0.7rem;
+  color: #FFB347;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cs-social-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.cs-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #FFB347;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.cs-social-link:hover {
+  transform: scale(1.1) !important; /* override the final animation scale if hovering */
+  background-color: #FFB347;
+}
+
+.is-visible .anim-social {
+  animation: csPopIn 0.5s forwards calc(0.8s + (var(--social-delay, 0) * 0.1s));
+}
+
+@keyframes csPopIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Right Column */
+.cs-right-column {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.is-visible .cs-right-column {
+  animation: csSlideLeft 0.8s forwards 0.6s;
+}
+
+@keyframes csSlideLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.cs-visual-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.cs-visual-circle {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,179,71,0.15) 0%, rgba(255,179,71,0) 70%);
+  border: 1px dashed rgba(255, 179, 71, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-visual-content {
+  text-align: center;
+}
+
+.cs-visual-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+.cs-visual-text {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.cs-visual-quote {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #F5E6D3;
+  text-align: center;
+  max-width: 280px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.cs-stars {
+  color: #FFB347;
+  letter-spacing: 4px;
+}
+
+/* Bottom Action */
+.cs-bottom-action {
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.is-visible .cs-bottom-action {
+  animation: csPopIn 0.8s forwards 1.2s;
+}
+
+.cs-consultation-btn {
+  background-color: #FFB347;
+  color: #1A2C3E;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 48px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 179, 71, 0.2);
+}
+
+.cs-consultation-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 16px rgba(255, 179, 71, 0.4);
+}
+
+/* Responsiveness */
+@media (max-width: 900px) {
+  .cs-split-layout {
+    flex-direction: column;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cs-left-column {
+    align-items: center;
+    text-align: center;
+  }
+
+  .cs-manager-info,
+  .cs-social-area,
+  .cs-contact-methods {
+    align-items: center;
+  }
+  
+  .cs-contact-methods {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .cs-contact-item {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .cs-visual-circle {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .cs-subheadline {
+    font-size: 1.5rem;
+  }
+}

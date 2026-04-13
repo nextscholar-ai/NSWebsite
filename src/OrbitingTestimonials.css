@@ -1,0 +1,263 @@
+/* OrbitingTestimonials.css - Premium Refinement */
+
+.orbit-scene {
+  position: relative;
+  width: 700px;
+  height: 600px;
+  perspective: 2000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+/* 💻 LAPTOP FIX (Refined Size & Style) */
+.laptop-container {
+  position: absolute;
+  z-index: 5; /* Middle z-index */
+  transform: translateY(-20px) rotateY(-10deg) rotateX(5deg);
+  transition: transform 0.8s ease-out;
+}
+
+.laptop-3d {
+  width: 380px; /* Specific requested size range */
+  height: 240px;
+  background: #1a1a1a;
+  border: 10px solid #2a2a2a;
+  border-radius: 16px;
+  position: relative;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.4); /* Soft shadow as requested */
+}
+
+.laptop-screen {
+  width: 100%;
+  height: 100%;
+  background: #0d0d0d;
+  overflow: hidden;
+  position: relative;
+  border-radius: 4px;
+}
+
+.dsa-interface {
+  padding: 15px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+}
+
+.dsa-header {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.dot { width: 8px; height: 8px; border-radius: 50%; }
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.dsa-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.code-line { color: #444; }
+.code-line-active { 
+  color: var(--nova-gold); 
+  border-left: 2px solid var(--nova-gold); 
+  padding-left: 10px; 
+}
+
+.dsa-preview {
+  margin-top: 20px;
+  background: rgba(255,255,255,0.03);
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.preview-top { color: #fff; font-weight: 600; margin-bottom: 8px; }
+
+.laptop-base {
+  width: 420px;
+  height: 14px;
+  background: #2a2a2a;
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  border-radius: 2px 2px 10px 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* 🔄 TESTIMONIALS ANIMATION FIX */
+.orbit-wrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: orbit-master 30s linear infinite; /* Smooth linear motion */
+}
+
+.orbit-wrap:hover {
+  animation-play-state: paused; /* Pause on hover as requested */
+}
+
+@keyframes orbit-master {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+.orbit-card-pos {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-style: preserve-3d;
+  /* Orbit Radius: 300px (Requested 250px-320px) */
+  transform: translate(-50%, -50%) 
+             rotateY(calc(360deg / var(--total) * var(--index))) 
+             translateZ(320px);
+  animation: depth-fix 30s linear infinite;
+  animation-delay: calc(30s / var(--total) * var(--index) * -1);
+}
+
+/* Z-Index fix based on rotation angle */
+@keyframes depth-fix {
+  0% { z-index: 10; } /* Front */
+  25% { z-index: 5; }  /* Side */
+  50% { z-index: 1; }  /* Back */
+  75% { z-index: 5; }  /* Side */
+  100% { z-index: 10; } /* Front */
+}
+
+.testimonial-orbit-card {
+  width: 220px;
+  background: #2f2f2f; /* Specific background requested */
+  border: 1px solid rgba(255,255,255,0.08); /* Specific border requested */
+  border-radius: 18px; /* Specific rounding requested */
+  padding: 12px 16px; /* Specific padding requested */
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  
+  /* Constant counter-rotation so text is always readable */
+  animation: counter-rotate 30s linear infinite, float 3s ease-in-out infinite alternate;
+  animation-delay: calc(var(--index) * -4s);
+  transition: transform 0.3s ease, z-index 0.3s ease;
+}
+
+.testimonial-orbit-card:hover {
+  transform: scale(1.1) rotateY(0deg); /* Scale and stay front-facing */
+  z-index: 20;
+  border-color: rgba(255,255,255,0.2);
+}
+
+@keyframes counter-rotate {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(-360deg); }
+}
+
+@keyframes float {
+  from { transform: rotateY(0deg) translateY(0px); }
+  to { transform: rotateY(0deg) translateY(-8px); } /* Smooth oscillation */
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.orbit-avatar {
+  width: 38px; /* Specific size requested */
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid rgba(255,255,255,0.1);
+}
+
+.orbit-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.orbit-meta strong {
+  font-size: 14px;
+  color: #FFFFFF;
+}
+
+.orbit-meta span {
+  font-size: 11px;
+  color: var(--nova-gold);
+  font-weight: 500;
+}
+
+.orbit-quote {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* 📱 RESPONSIVENESS FIX */
+@media (max-width: 1024px) {
+  .orbit-scene {
+    width: 100%;
+    transform: scale(0.85);
+  }
+}
+
+@media (max-width: 768px) {
+  .orbit-scene {
+    flex-direction: column;
+    height: auto;
+    width: 100vw;
+    perspective: none;
+    padding: 40px 0;
+  }
+
+  .laptop-container {
+    position: relative;
+    transform: none;
+    margin-bottom: 40px;
+    z-index: 1;
+  }
+
+  .laptop-3d {
+    width: 300px;
+    height: 180px;
+  }
+
+  .laptop-base {
+    width: 330px;
+    left: -15px;
+  }
+
+  .orbit-wrap {
+    position: relative;
+    animation: none;
+    transform: none;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding: 20px 5%;
+    width: 100%;
+    scrollbar-width: none;
+  }
+
+  .orbit-card-pos {
+    position: relative;
+    transform: none !important;
+    animation: none !important;
+    top: auto;
+    left: auto;
+    flex: 0 0 250px;
+    scroll-snap-align: center;
+    z-index: 1 !important;
+  }
+
+  .testimonial-orbit-card {
+    animation: none;
+    width: 100%;
+  }
+}
