@@ -181,15 +181,6 @@ function App() {
       {/* Enquiry Form Modal */}
       {isModalOpen && <EnquiryForm onClose={() => setIsModalOpen(false)} />}
       
-      {/* Secret Admin Button */}
-      <button 
-        className="secret-admin-trigger" 
-        onClick={() => window.open('https://nextscholar.sanity.studio', '_blank')}
-        title="Admin Panel"
-      >
-        🔒
-      </button>
-
     </div>
   );
 }

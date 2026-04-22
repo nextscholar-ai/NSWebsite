@@ -578,29 +578,3 @@ body {
   margin-bottom: 25px;
   opacity: 0.8;
 }
-
-/* Secret Admin Trigger */
-.secret-admin-trigger {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  background: rgba(13, 37, 63, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 9999;
-  transition: all 0.3s ease;
-  font-size: 14px;
-}
-
-.secret-admin-trigger:hover {
-  background: rgba(13, 37, 63, 0.8);
-  border-color: var(--nova-gold);
-  transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(200, 169, 106, 0.3);
-}
