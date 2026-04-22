@@ -3,7 +3,7 @@
 .success-feed-scene {
   position: relative;
   width: 100%;
-  height: 600px;
+  height: 750px; /* Increased from 600px */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,8 +13,8 @@
 /* 🪪 TESTIMONIAL FEED (Live Feed) */
 .feed-container {
   width: 100%;
-  max-width: 500px; /* Bigger container */
-  height: 600px;
+  max-width: 650px; /* Increased from 500px */
+  height: 750px; /* Increased from 600px */
   position: relative;
 }
 
@@ -30,7 +30,7 @@
 .feed-track {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 32px; /* Increased from 20px */
   animation: scrollUp 12s linear infinite;
   padding-bottom: 20px;
 }
@@ -44,40 +44,101 @@
   100% { transform: translateY(-50.5%); } 
 }
 
-/* 🎴 CARD DESIGN */
+/* 🎴 CARD DESIGN - Updated to match Image */
 .success-card {
   width: 100%;
-  max-width: 450px; /* Much Bigger! */
-  background: #2f2f2f;
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 24px;
-  padding: 20px 24px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  max-width: 600px;
+  background: #ffffff;
+  border: none;
+  border-radius: 40px; /* Large rounded corners from image */
+  padding: 32px 40px;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.08); /* Softer shadow for white card */
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+  position: relative;
 }
 
 .success-card:hover {
-  transform: scale(1.1) !important;
+  transform: translateY(-5px) scale(1.02) !important;
   z-index: 20;
-  border-color: rgba(255,255,255,0.2);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
 }
 
-.card-top {
+.quote-mark {
+  font-size: 60px;
+  color: #fcebdc; /* Soft orange/peach quote mark */
+  line-height: 1;
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  font-family: serif;
+  opacity: 0.8;
+}
+
+.card-quote-section {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quote-highlight {
+  display: inline-block;
+  background: #fef0e6; /* Peach background */
+  color: #f5a66a; /* Orange text */
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 18px;
+  width: fit-content;
+}
+
+.main-quote {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0e2a47; /* Navy text from image */
+  line-height: 1.3;
+  margin: 0;
+}
+
+.card-separator {
+  width: 100%;
+  height: 1px;
+  background: #eef2f6; /* Very subtle line */
+  margin: 8px 0;
+}
+
+.card-profile-section {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
+  gap: 16px;
 }
 
 .user-avatar {
-  width: 50px; /* Bigger avatar */
-  height: 50px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  border: 2px solid var(--nova-gold);
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.user-avatar-placeholder {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #1a4d4a; /* Teal/dark green background from image initials */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
 }
 
 .user-info {
@@ -86,29 +147,46 @@
 }
 
 .user-name {
-  color: #fff;
-  font-weight: 700;
-  font-size: 18px; /* Bigger name */
+  color: #0e2a47;
+  font-weight: 800;
+  font-size: 22px;
 }
 
 .user-badge {
-  color: var(--nova-gold);
-  font-size: 13px;
+  color: #64748b; /* Greyish text */
+  font-size: 15px;
+  font-weight: 500;
 }
 
-.user-quote {
-  font-size: 16px; /* Bigger quote */
-  color: rgba(255,255,255,0.8);
-  margin: 0;
-  line-height: 1.5;
-  font-style: italic;
+.card-footer-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
 }
 
-/* FEATURE: Spotlight Highlight */
+.stars {
+  display: flex;
+  gap: 4px;
+}
+
+.star {
+  color: #ffb703; /* Gold stars */
+  font-size: 18px;
+}
+
+.footer-quote {
+  color: #4a7c59; /* Greenish text from image footer */
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* FEATURE: Spotlight Highlight - adjusted for new theme */
 .success-card.spotlight {
-  transform: scale(1.08) translateX(-10px);
-  box-shadow: 0 0 20px rgba(255,255,255,0.15);
-  border-color: rgba(255,255,255,0.3);
+  transform: scale(1.05) translateX(-5px);
+  box-shadow: 0 20px 70px rgba(0,0,0,0.15);
+  border: 2px solid #fef0e6;
 }
 
 /* 🔹 Remove old decorations */

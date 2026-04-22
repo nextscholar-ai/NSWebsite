@@ -131,6 +131,62 @@ body {
   transform: translateY(-2px);
 }
 
+.dropdown-arrow {
+  margin-left: 5px;
+  font-size: 10px;
+  transition: transform 0.3s ease;
+}
+
+.nav-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-dropdown-content {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 160px;
+  background: rgba(13, 37, 63, 0.98);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  padding: 8px 0;
+  margin-top: 10px;
+  z-index: 100;
+  transform-origin: top right;
+  animation: dropdownFade 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.nav-dropdown-content a {
+  color: #fff;
+  padding: 12px 20px;
+  text-decoration: none;
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.nav-dropdown-content a:hover {
+  background: rgba(200, 169, 106, 0.1);
+  color: var(--nova-gold);
+  padding-left: 25px;
+}
+
 .nav-btn-solid {
   background-color: var(--nova-gold);
   color: #fff;

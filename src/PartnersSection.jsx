@@ -55,14 +55,17 @@ const PartnersSection = ({ partners }) => {
           {data.map((partner, index) => (
             <div 
               key={partner._id || index} 
-              className="pt-logo-card anim-card" 
+              className={`pt-logo-card anim-card ${index % 6 === 0 ? 'featured-card' : ''}`} 
               style={{ '--card-delay': index }}
             >
-              {partner.logo ? (
-                <img src={urlFor(partner.logo)} alt={partner.name} className="pt-school-logo" />
-              ) : (
-                <div className="pt-school-icon">🏫</div>
-              )}
+              <div className="pt-logo-wrapper">
+                {partner.logo ? (
+                  <img src={urlFor(partner.logo)} alt={partner.name} className="pt-school-logo" />
+                ) : (
+                  <div className="pt-school-icon">🏫</div>
+                )}
+                <div className="image-overlay"></div>
+              </div>
               <div className="pt-school-name">{partner.name}</div>
             </div>
           ))}

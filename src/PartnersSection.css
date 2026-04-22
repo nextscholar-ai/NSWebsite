@@ -70,68 +70,119 @@
 /* Logo Wall Grid - Matrix Style */
 .pt-logo-grid {
   display: grid;
-  /* Balanced 4-column matrix on desktop */
   grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+  gap: 28px; /* Increased breathing space as requested */
   justify-content: center;
   align-items: stretch;
 }
 
 .pt-logo-card {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(14, 39, 71, 0.55); /* Deep navy glass as requested */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
   padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  /* Ensure things stay top-down */
   text-align: center;
   gap: 15px;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  height: 220px;
-  /* Fixed height for uniformity */
+  box-shadow: 
+    0 10px 30px rgba(0,0,0,0.25),
+    inset 0 0 20px rgba(255,255,255,0.03); /* Subtle inner glow */
+  height: 240px; /* Slightly taller for breathing room */
   overflow: hidden;
+  position: relative;
 }
 
 .pt-logo-card:hover {
-  transform: translateY(-10px);
-  border-color: rgba(13, 37, 63, 1);
-  box-shadow: 0 20px 40px rgba(255, 215, 0, 0.15);
+  transform: translateY(-10px) scale(1.02);
+  border: 1px solid rgba(201, 162, 75, 0.6); /* Gold accent border on hover */
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  z-index: 5;
+}
+
+.pt-logo-wrapper {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .pt-school-logo {
   width: 100%;
-  height: 110px;
-  /* Fixed height for all images */
+  height: 100%;
   object-fit: cover;
-  /* Crops the image to fit perfectly without stretching */
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease;
   background: rgba(255, 255, 255, 0.05);
+}
+
+.pt-logo-card:hover .pt-school-logo {
+  transform: scale(1.08); /* Hover zoom */
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.4),
+    transparent
+  );
+  pointer-events: none;
 }
 
 .pt-school-icon {
   font-size: 50px;
-  height: 110px;
+  height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .pt-school-name {
   font-size: 15px;
-  font-weight: 700;
-  color: #fff;
-  /* Gold for visibility */
+  font-weight: 500;
+  color: #F4EFE8; /* Premium warm off-white as requested */
   line-height: 1.3;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
   margin-top: auto;
-  /* Push to bottom of fixed container if there's room */
   margin-bottom: 5px;
+}
+
+/* Featured Card Style */
+.featured-card {
+  background: linear-gradient(
+    135deg,
+    rgba(201, 162, 75, 0.2),
+    rgba(14, 39, 71, 0.6)
+  );
+  border: 1px solid rgba(201, 162, 75, 0.4);
+}
+
+/* Section-level soft glow */
+.partners-section::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(201, 162, 75, 0.12),
+    transparent 60%
+  );
+  filter: blur(100px);
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Impact Statement */
@@ -176,12 +227,12 @@
   }
 
   .pt-logo-card {
-    height: 180px;
+    height: 200px;
     padding: 15px;
   }
 
-  .pt-school-logo {
-    height: 80px;
+  .pt-logo-wrapper {
+    height: 90px;
   }
 
   .pt-school-name {

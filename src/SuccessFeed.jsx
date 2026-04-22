@@ -48,16 +48,37 @@ const SuccessFeed = ({ testimonials }) => {
                   key={`${story._id}-${index}`} 
                   className={`success-card ${highlightedId === story._id ? 'spotlight' : ''}`}
                 >
-                  <div className="card-top">
-                    {photo && (
+                  <div className="quote-mark">“</div>
+                  
+                  <div className="card-quote-section">
+                    <span className="quote-highlight">Top Performer</span>
+                    <p className="main-quote">{quote}</p>
+                  </div>
+
+                  <div className="card-separator"></div>
+
+                  <div className="card-profile-section">
+                    {photo ? (
                       <img src={urlFor(photo)} alt={name} className="user-avatar" />
+                    ) : (
+                      <div className="user-avatar-placeholder">
+                        {name ? name.split(' ').map(n => n[0]).join('') : 'NS'}
+                      </div>
                     )}
                     <div className="user-info">
                       <span className="user-name">{name}</span>
-                      <span className="user-badge">{title}</span>
+                      <span className="user-badge">{title || 'Next Scholar Alum'}</span>
                     </div>
                   </div>
-                  <p className="user-quote">"{quote}"</p>
+
+                  <div className="card-footer-section">
+                    <div className="stars">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <span key={star} className="star">★</span>
+                      ))}
+                    </div>
+                    <span className="footer-quote">“Excellence in learning.”</span>
+                  </div>
                 </div>
               )
             })}

@@ -16,6 +16,7 @@ const urlFor = (source) => builder.image(source).url();
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isStudyDropdownOpen, setIsStudyDropdownOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [data, setData] = useState({
@@ -57,6 +58,15 @@ function App() {
     }
   }, [loading]);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleOutsideClick = () => setIsStudyDropdownOpen(false);
+    if (isStudyDropdownOpen) {
+      window.addEventListener('click', handleOutsideClick);
+    }
+    return () => window.removeEventListener('click', handleOutsideClick);
+  }, [isStudyDropdownOpen]);
+
   if (loading) {
     return (
       <div className="loading-screen">
@@ -97,13 +107,24 @@ function App() {
           <a href="#contact" className="nav-link">Contact</a>
         </div>
         <div className="nav-actions">
-          <button className="nav-btn-outline">Login</button>
-          <button 
-            className="nav-btn-outline" 
-            onClick={() => window.open('https://nextscholar.gnomio.com/course/index.php', '_blank')}
-          >
-            Study
-          </button>
+          <div className="nav-dropdown">
+            <button 
+              className="nav-btn-outline"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsStudyDropdownOpen(!isStudyDropdownOpen);
+              }}
+            >
+              Study <span className="dropdown-arrow">▾</span>
+            </button>
+            {isStudyDropdownOpen && (
+              <div className="nav-dropdown-content" onClick={(e) => e.stopPropagation()}>
+                <a href="https://www.khanacademy.org/" target="_blank" rel="noopener noreferrer" onClick={() => setIsStudyDropdownOpen(false)}>Mathematics</a>
+                <a href="https://nextscholar.gnomio.com/" target="_blank" rel="noopener noreferrer" onClick={() => setIsStudyDropdownOpen(false)}>Science</a>
+                <a href="https://nextscholar.gnomio.com/" target="_blank" rel="noopener noreferrer" onClick={() => setIsStudyDropdownOpen(false)}>English</a>
+              </div>
+            )}
+          </div>
           <button className="nav-btn-solid" onClick={() => setIsModalOpen(true)}>Join Class</button>
         </div>
       </header>

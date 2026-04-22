@@ -70,7 +70,8 @@ Board: ${formData.boardOfEducation}`.trim();
           time_to_call: formData.preferredTime,  // matches {{time_to_call}}
           gender: formData.gender,          // matches {{gender}}
           class: formData.currentClass,     // matches {{class}}
-          board: formData.boardOfEducation  // matches {{board}}
+          board: formData.boardOfEducation, // matches {{board}}
+          submission_date: new Date().toLocaleString() // matches {{submission_date}}
         }
       );
 
