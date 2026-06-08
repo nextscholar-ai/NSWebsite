@@ -1,0 +1,218 @@
+# PHASE 4 — Create Oracle Database
+
+## STEP 6 — Open OCI Console
+
+Go to:
+
+Oracle Cloud Dashboard
+
+## STEP 7 — Create Autonomous Database
+
+Search:
+
+Autonomous Database
+
+Click:
+
+Create Autonomous Database
+
+## STEP 8 — Fill Database Details
+
+Use:
+
+| Field           | Value                  |
+| --------------- | ---------------------- |
+| Display Name    | next-scholar-db        |
+| Database Name   | NEXTSCHOLAR            |
+| Workload Type   | Transaction Processing |
+| Deployment Type | Shared Infrastructure  |
+| Always Free     | ENABLE                 |
+| Password        | Strong password        |
+
+Save password carefully.
+
+## STEP 9 — Create Wallet
+
+After DB is created:
+
+Click:
+
+Database Connection
+
+Download:
+
+Wallet
+
+This ZIP file contains:
+
+certificates
+
+secure connection configs
+
+VERY IMPORTANT (Send the "wallet" folder to Rutuja along with your Database username and password)
+
+# PHASE 6 — Create Table in Oracle Database
+
+## STEP 16 — Open Database Actions
+
+Inside Oracle DB page:
+
+Click:
+
+Database Actions
+
+Open SQL worksheet.
+
+## STEP 17 — Create Table
+
+Run:
+
+```sql
+CREATE TABLE enquiries (
+    id NUMBER GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR2(100),
+    email VARCHAR2(100),
+    phone VARCHAR2(20),
+    message CLOB,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(id)
+);
+```
+
+# PHASE 9 — Deploy on Oracle VM
+
+## STEP 22 — Create Oracle VM
+
+Inside OCI:
+
+Search:
+
+Compute
+
+Create instance.
+
+Use:
+
+| Setting   | Value                  |
+| --------- | ---------------------- |
+| OS        | Ubuntu 22.04           |
+| Shape     | VM.Standard.E2.1.Micro |
+| Public IP | YES                    |
+
+Download SSH key.
+
+## STEP 23 — Open Ports
+
+Open:
+
+| Port | Purpose |
+| ---- | ------- |
+| 22   | SSH     |
+| 80   | HTTP    |
+| 443  | HTTPS   |
+| 5000 | Backend |
+
+## STEP 24 — Connect to VM
+
+```bash
+ssh -i key.pem ubuntu@your-ip
+```
+
+## STEP 25 — Install Node.js
+
+```bash
+sudo apt update
+
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+
+sudo apt install -y nodejs
+```
+
+## STEP 26 — Clone Project
+
+```bash
+git clone your-github-repo
+```
+
+## STEP 27 — Install Dependencies
+
+```bash
+cd client
+npm install
+
+cd ../server
+npm install
+```
+
+## STEP 28 — Build Frontend
+
+```bash
+cd client
+npm run build
+```
+
+## STEP 29 — Install PM2
+
+```bash
+sudo npm install -g pm2
+```
+
+Start backend:
+
+```bash
+cd server
+pm2 start server.js
+```
+
+Save:
+
+```bash
+pm2 save
+```
+
+## STEP 30 — Install Nginx
+
+```bash
+sudo apt install nginx
+```
+
+## STEP 31 — Configure Nginx
+
+```bash
+sudo nano /etc/nginx/sites-available/default
+```
+
+Replace:
+
+```nginx
+server {
+
+    listen 80;
+
+    server_name your_public_ip;
+
+    location / {
+        root /home/ubuntu/NEXT-SCHOLAR/client/dist;
+        index index.html;
+        try_files $uri /index.html;
+    }
+
+    location /api {
+        proxy_pass http://localhost:5000;
+    }
+}
+```
+
+Restart:
+
+```bash
+sudo systemctl restart nginx
+```
+
+## STEP 32 — Open Website
+
+```text
+http://your-public-ip
+```
+
+Your website is live.
